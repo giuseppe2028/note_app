@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/Classes/Strings.dart';
+import 'package:note_app/ElementListView.dart';
+import 'package:note_app/SecondPage.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  // ignore_for_file: prefer_const_constructors
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: NewWidget(),
+    );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         backgroundColor: Colors.black87,
         appBar: AppBar(
           centerTitle: false,
@@ -19,51 +34,27 @@ class MyApp extends StatelessWidget {
             style: const TextStyle(fontSize: 25),
           ),
         ),
-        body: ListView(
+        body: Column(
           children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              color: Colors.white,
-              child: Container(
-                margin: EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Title",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(Stringhe.getText()),
-                  ],
-                ),
+            Expanded(
+              child: ListView(
+                children: [
+                  ElementListView("titolo", Stringhe.getText()),
+                  ElementListView("titolo2", Stringhe.getText()),
+                  ElementListView("titolo3", Stringhe.getText()),
+                ],
               ),
             ),
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+            Container(
+              alignment: Alignment.centerRight,
+              margin: EdgeInsets.only(top: 10, bottom: 50, right: 20),
+              child: FloatingActionButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SecondPage())),
+                child: Icon(Icons.add),
               ),
-              color: Colors.white,
-              child: Container(
-                margin: EdgeInsets.all(15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Title",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    Text(Stringhe.getText()),
-                  ],
-                ),
-              ),
-            ),
+            )
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
