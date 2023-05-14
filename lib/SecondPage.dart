@@ -12,6 +12,13 @@ class _SecondPageState extends State<SecondPage> {
   // ignore_for_file: prefer_const_constructors
   @override
   Widget build(BuildContext context) {
+    int _maxLine;
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      _maxLine = 3;
+    } else {
+      _maxLine = 25;
+    }
+
     print("entrato");
     return MaterialApp(
       home: Scaffold(
@@ -37,7 +44,7 @@ class _SecondPageState extends State<SecondPage> {
                 ),
                 TextField(
                   keyboardType: TextInputType.multiline,
-                  maxLines: 25,
+                  maxLines: _maxLine,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Enter your text here',
