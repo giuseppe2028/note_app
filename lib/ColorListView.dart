@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:note_app/FloatingButton.dart';
 
 class ColorListView extends StatefulWidget {
+  final Function(Color) onPressed;
+
+  ColorListView({required this.onPressed});
   @override
   State<ColorListView> createState() => _ColorListViewState();
 }
@@ -16,11 +17,23 @@ class _ColorListViewState extends State<ColorListView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            FloatingButton(),
-            FloatingButton(),
-            FloatingButton(),
-            FloatingButton(),
-            FloatingButton(),
+            FloatingActionButton(onPressed: () {
+              widget.onPressed(Colors.white);
+            }),
+            FloatingActionButton(onPressed: () {
+              widget.onPressed(Colors.white);
+            }),
+            FloatingActionButton(
+                backgroundColor: Colors.white,
+                onPressed: () {
+                  widget.onPressed(Colors.white);
+                }),
+            FloatingActionButton(onPressed: () {
+              widget.onPressed(Colors.white);
+            }),
+            FloatingActionButton(onPressed: () {
+              widget.onPressed(Colors.white);
+            }),
           ],
         ),
       ),

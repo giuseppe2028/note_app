@@ -9,7 +9,6 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPageState extends State<SecondPage> {
   Color back = Colors.black87;
-  final itemKey = ValueKey<String>("item-id-0025");
 
   ColorHandler colorHandler = ColorHandler();
   // ignore_for_file: prefer_const_constructors
@@ -17,8 +16,18 @@ class _SecondPageState extends State<SecondPage> {
   Widget build(BuildContext context) {
     print("entrato");
     return MaterialApp(
-      key: itemKey,
-      home: Scaffold(backgroundColor: back, body: ColorListView()),
+      home: Scaffold(
+        backgroundColor: back,
+        body: ColorListView(
+          onPressed: changeBackgroundColor,
+        ),
+      ),
     );
+  }
+
+  void changeBackgroundColor(Color color) {
+    setState(() {
+      back = color;
+    });
   }
 }
