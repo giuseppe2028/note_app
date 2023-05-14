@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/Classes/ColorHandler.dart';
 import 'package:note_app/ColorListView.dart';
 
 class SecondPage extends StatefulWidget {
@@ -10,7 +9,6 @@ class SecondPage extends StatefulWidget {
 class _SecondPageState extends State<SecondPage> {
   Color back = Colors.black87;
 
-  ColorHandler colorHandler = ColorHandler();
   // ignore_for_file: prefer_const_constructors
   @override
   Widget build(BuildContext context) {
@@ -18,8 +16,25 @@ class _SecondPageState extends State<SecondPage> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: back,
-        body: ColorListView(
-          onPressed: changeBackgroundColor,
+        body: SafeArea(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                ColorListView(
+                  onPressed: changeBackgroundColor,
+                ),
+                TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 30,
+                ),
+                FloatingActionButton(
+                  onPressed: () => {},
+                  child: Icon(Icons.save),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
