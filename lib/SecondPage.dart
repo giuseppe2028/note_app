@@ -21,16 +21,38 @@ class _SecondPageState extends State<SecondPage> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
+                Container(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: Icon(Icons.arrow_back))),
                 ColorListView(
                   onPressed: changeBackgroundColor,
                 ),
                 TextField(
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 30,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter a Title',
+                  ),
                 ),
-                FloatingActionButton(
-                  onPressed: () => {},
-                  child: Icon(Icons.save),
+                TextField(
+                  keyboardType: TextInputType.multiline,
+                  maxLines: 25,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter your text here',
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: () => {},
+                    child: Icon(
+                      Icons.save,
+                      color: Colors.black87,
+                    ),
+                    backgroundColor: Colors.white,
+                  ),
                 )
               ],
             ),
