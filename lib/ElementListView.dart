@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 class ElementListView extends StatelessWidget {
   String _title, _contenuto;
-  ElementListView(this._title, this._contenuto);
+  Color _colore;
+
+  ElementListView(this._title, this._contenuto, this._colore);
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: Colors.white,
+      color: _colore,
       child: Container(
         margin: EdgeInsets.all(15),
         child: Column(

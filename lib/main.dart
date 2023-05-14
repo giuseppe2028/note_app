@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/Classes/Colori.dart';
 import 'package:note_app/Classes/Strings.dart';
 import 'package:note_app/ElementListView.dart';
 import 'package:note_app/SecondPage.dart';
@@ -39,9 +40,12 @@ class NewWidget extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  ElementListView("titolo", Stringhe.getText()),
-                  ElementListView("titolo2", Stringhe.getText()),
-                  ElementListView("titolo3", Stringhe.getText()),
+                  ElementListView(
+                      "titolo", Stringhe.getText(), Colori.colore1()),
+                  ElementListView(
+                      "titolo2", Stringhe.getText(), Colori.colore3()),
+                  ElementListView(
+                      "titolo3", Stringhe.getText(), Colori.colore5()),
                 ],
               ),
             ),
