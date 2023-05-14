@@ -2,7 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note_app/FloatingButton.dart';
 
-class ColorListView extends StatelessWidget {
+class ColorListView extends StatefulWidget {
+  @override
+  State<ColorListView> createState() => _ColorListViewState();
+}
+
+class _ColorListViewState extends State<ColorListView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
