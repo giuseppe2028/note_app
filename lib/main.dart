@@ -53,9 +53,13 @@ class NewWidget extends StatelessWidget {
               alignment: Alignment.centerRight,
               margin: EdgeInsets.only(top: 10, bottom: 50, right: 20),
               child: FloatingActionButton(
+                backgroundColor: Colors.white,
                 onPressed: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => SecondPage())),
-                child: Icon(Icons.add),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.black87,
+                ),
               ),
             )
           ],

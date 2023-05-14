@@ -13,6 +13,7 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     Color coloreTesto = Colors.white;
+    Icon freccia = Icon(Icons.arrow_back, color: coloreTesto);
     int _maxLine;
     if (MediaQuery.of(context).orientation == Orientation.landscape) {
       _maxLine = 3;
@@ -35,10 +36,10 @@ class _SecondPageState extends State<SecondPage> {
             child: Column(
               children: [
                 Container(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: Icon(Icons.arrow_back))),
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                      onPressed: () => Navigator.pop(context), icon: freccia),
+                ),
                 ColorListView(
                   onPressed: changeBackgroundColor,
                 ),
