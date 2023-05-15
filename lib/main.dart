@@ -44,8 +44,11 @@ class _NewWidgetState extends State<NewWidget> {
             Expanded(
               child: ListView.builder(
                 itemCount: ListOfNotes.size(),
-                itemBuilder: (context, index) =>
-                    ElementListView(ListOfNotes.getElement(index)),
+                itemBuilder: (context, index) => ElementListView(
+                  ListOfNotes.getElement(index),
+                  index,
+                  deleteElement: deleteElement,
+                ),
               ),
             ),
             Container(
@@ -77,6 +80,12 @@ class _NewWidgetState extends State<NewWidget> {
   void addList(Note value) {
     setState(() {
       ListOfNotes.addLista(value);
+    });
+  }
+
+  void deleteElement(int index) {
+    setState(() {
+      ListOfNotes.remove(index);
     });
   }
 }

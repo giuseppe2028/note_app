@@ -20,4 +20,8 @@ class ListOfNotes {
   static int size() {
     return _lista.length;
   }
+
+  static void remove(index) {
+    _lista.removeAt(index);
+  }
 }

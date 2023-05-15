@@ -8,7 +8,7 @@ class ColorListView extends StatefulWidget {
   facciamo la stateful widget, stiamo dividendo la classe in due sottoclassi. Con widget accediamo ai metodi della classe principale
   che estende stateful widget.
 
-  Color rappresenta cosa accetta la funzione
+  Color rappresenta cosa accetta l
 */
   final Function(Color) onPressed;
   ColorListView({required this.onPressed});

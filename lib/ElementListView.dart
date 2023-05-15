@@ -4,7 +4,9 @@ import 'Classes/Note.dart';
 
 class ElementListView extends StatefulWidget {
   Note nota;
-  ElementListView(this.nota);
+  int _index;
+  final Function(int) deleteElement;
+  ElementListView(this.nota, this._index, {required this.deleteElement});
 
   @override
   State<ElementListView> createState() => _ElementListViewState();
@@ -36,7 +38,11 @@ class _ElementListViewState extends State<ElementListView> {
           Container(
               alignment: Alignment.centerRight,
               margin: EdgeInsets.only(bottom: 10),
-              child: IconButton(onPressed: () {}, icon: Icon(Icons.delete)))
+              child: IconButton(
+                  onPressed: () {
+                    widget.deleteElement(widget._index);
+                  },
+                  icon: Icon(Icons.delete)))
         ],
       ),
     );
