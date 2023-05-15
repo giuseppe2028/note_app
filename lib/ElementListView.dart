@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
-class ElementListView extends StatelessWidget {
-  String _title, _contenuto;
-  Color _colore;
-  ElementListView(this._title, this._contenuto, this._colore);
+import 'Classes/Note.dart';
+
+class ElementListView extends StatefulWidget {
+  Note nota;
+  ElementListView(this.nota);
+
+  @override
+  State<ElementListView> createState() => _ElementListViewState();
+}
+
+class _ElementListViewState extends State<ElementListView> {
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      color: _colore,
+      color: widget.nota.getColore(),
       child: Column(
         children: [
           Container(
@@ -19,10 +26,10 @@ class ElementListView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _title,
+                  widget.nota.getTitolo(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Text(_contenuto),
+                Text(widget.nota.getContenuto()),
               ],
             ),
           ),

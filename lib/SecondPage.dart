@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/Classes/ListOfNotes.dart';
 import 'package:note_app/ColorListView.dart';
 
+import 'Classes/Note.dart';
+
 class SecondPage extends StatefulWidget {
+  final Function(Note) addList;
+  SecondPage({required this.addList});
   @override
   State<SecondPage> createState() => _SecondPageState();
 }
 
 class _SecondPageState extends State<SecondPage> {
   Color back = Colors.black87;
+  final _controller1 = TextEditingController();
+  final _controller2 = TextEditingController();
 
   // ignore_for_file: prefer_const_constructors
   @override
@@ -44,13 +51,16 @@ class _SecondPageState extends State<SecondPage> {
                   onPressed: changeBackgroundColor,
                 ),
                 TextField(
+                  controller: _controller1,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Enter a Title',
                       hintStyle: TextStyle(color: coloreTesto)),
                   style: TextStyle(color: coloreTesto),
                 ),
+                //TODO: Mettere il numero di righe varibili; in modo tale che si adatti al dispositivo
                 TextField(
+                  controller: _controller2,
                   keyboardType: TextInputType.multiline,
                   maxLines: _maxLine,
                   decoration: InputDecoration(
@@ -63,12 +73,19 @@ class _SecondPageState extends State<SecondPage> {
                 Container(
                   alignment: Alignment.bottomRight,
                   child: FloatingActionButton(
-                    onPressed: () => {},
+                    onPressed: () {
+                      //creo l'oggett:
+
+                      widget.addList(
+                          Note(_controller1.text, _controller2.text, back));
+                      Navigator.pop(context);
+                      print("${_controller2.text}");
+                    },
+                    backgroundColor: Colors.white,
                     child: Icon(
                       Icons.save,
                       color: Colors.black87,
                     ),
-                    backgroundColor: Colors.white,
                   ),
                 )
               ],
@@ -77,6 +94,10 @@ class _SecondPageState extends State<SecondPage> {
         ),
       ),
     );
+  }
+
+  void addElementList(Note nota) {
+    ListOfNotes.addLista(nota);
   }
 
   void changeBackgroundColor(Color color) {

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/Classes/Colori.dart';
+import 'package:note_app/Classes/ListOfNotes.dart';
 import 'package:note_app/Classes/Strings.dart';
-import 'package:note_app/ElementListView.dart';
 import 'package:note_app/SecondPage.dart';
 
+import 'Classes/Note.dart';
+import 'ElementListView.dart';
+
+//TODO considerare il List Tile al posto di questa lista
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   // ignore_for_file: prefer_const_constructors
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,13 +20,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    super.key,
-  });
+class NewWidget extends StatefulWidget {
+  @override
+  State<NewWidget> createState() => _NewWidgetState();
+}
 
+class _NewWidgetState extends State<NewWidget> {
   @override
   Widget build(BuildContext context) {
+    print("ENTRO:..");
     return Scaffold(
         backgroundColor: Colors.black87,
         appBar: AppBar(
@@ -38,15 +42,10 @@ class NewWidget extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: ListView(
-                children: [
-                  ElementListView(
-                      "titolo", Stringhe.getText(), Colori.colore1()),
-                  ElementListView(
-                      "titolo2", Stringhe.getText(), Colori.colore3()),
-                  ElementListView(
-                      "titolo3", Stringhe.getText(), Colori.colore5()),
-                ],
+              child: ListView.builder(
+                itemCount: ListOfNotes.size(),
+                itemBuilder: (context, index) =>
+                    ElementListView(ListOfNotes.getElement(index)),
               ),
             ),
             Container(
@@ -54,8 +53,17 @@ class NewWidget extends StatelessWidget {
               margin: EdgeInsets.only(top: 10, bottom: 50, right: 20),
               child: FloatingActionButton(
                 backgroundColor: Colors.white,
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SecondPage())),
+                onPressed: () {
+                  setState(() {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SecondPage(
+                                  addList: addList,
+                                )));
+                    print("${ListOfNotes.size()}");
+                  });
+                },
                 child: Icon(
                   Icons.add,
                   color: Colors.black87,
@@ -64,5 +72,11 @@ class NewWidget extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  void addList(Note value) {
+    setState(() {
+      ListOfNotes.addLista(value);
+    });
   }
 }
